@@ -32,18 +32,18 @@ public:
         balance -= amount;
        
     }
-    
+    //returns the balance
     double getBalance(){
         return balance;
     }
-    
+    //gets the name
     string getName(){
         return accountHolderName;
     }
     
     
 };
-
+//input validation function
 bool isNotNegative(double num){
     if(num < 0){
         return false;
@@ -51,7 +51,7 @@ bool isNotNegative(double num){
     return true;
 }
 int main(int argc, const char * argv[]) {
-    
+    //variables
     int option = 0;
     int option2 = 0;
     string name;
@@ -69,7 +69,7 @@ int main(int argc, const char * argv[]) {
     cout << endl;
     cout << "Choose an option: ";
     cin >> option;
-    
+    //aborts if 5 is entered.
     if(option == 5){
         return 0;
     }
@@ -79,6 +79,7 @@ int main(int argc, const char * argv[]) {
             try {
                 cout << "To create your account, please enter your name: ";
                 cin >> name;
+                //loop to check if the digits entered are characters or integers.
                 for(char c : name){
                     if(isdigit(c)){
                         throw invalid_argument("Please enter a string.");
@@ -88,18 +89,22 @@ int main(int argc, const char * argv[]) {
                     }
                 }
             } catch (const invalid_argument &e) {
+                //e.what is used to reference the exception values
                 cout << e.what() << "Try again." << endl;
             }
         }
+        
         cout << "Enter a number for your account: ";
         cin >> acnum;
+        //account number validation - no negative numbers.
         while(isNotNegative(acnum) != true){
-            cout << "Please enter a valid account number: $";
+            cout << "Please enter a valid account number: ";
             cin >> balance;
             break;
         }
         cout << "Enter initial deposit amount: $";
         cin >> balance;
+        //deposit validation - no negative numbers.
         while(isNotNegative(balance) != true){
             cout << "Try again. Enter intial deposit: $";
             cin >> balance;
@@ -110,7 +115,7 @@ int main(int argc, const char * argv[]) {
         cout << "Account create sucessfully!" << endl;
         cout << endl;
         
-        
+        //actions for post account creation
         while(option2 != 4){
             cout << "1. Deposit." << endl;
             cout << "2. Withdraw." << endl;
@@ -180,15 +185,16 @@ int main(int argc, const char * argv[]) {
         cout << endl;
         cin >> option;
         
-        bool isExit = false;
         
         if(option == 5){
             return 0;
         }
+        //to check if information entered is characters or integers.
         while(isString == false){
             try {
                 cout << "To create your account, please enter your name: ";
                 cin >> name;
+                //loop for input validation.
                 for(char c : name){
                     if(isdigit(c)){
                         throw invalid_argument("Please enter a string.");
@@ -203,13 +209,15 @@ int main(int argc, const char * argv[]) {
         }
         cout << "Enter a number for your account: ";
         cin >> acnum;
+        //input validation loop
         while(isNotNegative(acnum) != true){
-            cout << "Please enter a valid account number: $";
+            cout << "Please enter a valid account number: ";
             cin >> balance;
             break;
     }
             cout << "Enter initial deposit amount: $";
             cin >> balance;
+        //deposit validation - no negative numbers.
             while(isNotNegative(balance) != true){
                 cout << "Try again. Enter intial deposit: $";
                 cin >> balance;
